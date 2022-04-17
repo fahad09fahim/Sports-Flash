@@ -1,0 +1,45 @@
+[
+    {
+        "id":"01",
+        "name":"Superstar Package",
+        "price": "$300",
+        "image":"https://i.ibb.co/1zfWX7G/service1.jpg",
+        "details":"10-15 individuals.Using canon professional camera.10 photos edit include with this package."   
+    },
+    {
+        "id":"02",
+        "name":"Superstar Package||",
+        "price": "$350",
+        "image":"https://i.ibb.co/RY2R6qQ/service2.jpg",
+        "details":"10-15 individuals.Using canon professional camera.15 photos edit include with this package."   
+    },
+    {
+        "id":"03",
+        "name":"Major League package",
+        "price": "$500",
+        "image":"https://i.ibb.co/vdq6r7r/service3.jpg",
+        "details":"50-60 individuals.Using canon professional camera.55 photos edit include with this package."   
+    },
+    {
+        "id":"04",
+        "name":"Major League package||",
+        "price": "$550",
+        "image":"https://i.ibb.co/wWBcMqk/service6.jpg",
+        "details":"50-65 individuals.Using canon professional camera.57 photos edit include with this package."   
+    },
+    {
+        "id":"05",
+        "name":"Hall of Fame Package",
+        "price": "$600",
+        "image":"https://i.ibb.co/KhcWPDY/service4.jpg",
+        "details":"5 Magazine Cover,20 individuals.Using canon professional camera.5+12 photo will be free for editing."   
+    },
+    {
+        "id":"06",
+        "name":"Hall of Fame Package||",
+        "price": "$620",
+        "image":"https://i.ibb.co/F6YcpGM/service5.jpg",
+        "details":"5 Magazine Cover,25 individuals.Using canon professional camera.5+15 photo will be free for editing."   
+    }
+
+]
