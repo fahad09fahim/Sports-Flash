@@ -12,12 +12,24 @@
   height: 250px;
   border-radius: 18px;
 }
+.price {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: brown;
+}
 .details {
   padding: 0 15px;
 }
 
 .service button {
   width: 50%;
-  color: tomato;
+  color: whitesmoke;
   background-color: #282828;
+  border-radius: 2px;
+}
+.service button:hover {
+  color: black;
+  background-color: aliceblue;
+  font-weight: 500;
 }
