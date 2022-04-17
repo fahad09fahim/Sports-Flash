@@ -1,7 +1,9 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Service.css";
 const Service = ({ service }) => {
   const { name, price, image, details } = service;
+
   return (
     <div className="service">
       <img src={image} alt="" />
@@ -10,7 +12,9 @@ const Service = ({ service }) => {
       <p className="details">
         <small>{details}</small>
       </p>
-      <button>Book</button>
+      <Link to="checkout">
+        <button>Book</button>
+      </Link>
     </div>
   );
 };

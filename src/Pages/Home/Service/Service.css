@@ -23,13 +23,19 @@
 }
 
 .service button {
-  width: 50%;
-  color: whitesmoke;
-  background-color: #282828;
-  border-radius: 2px;
+  width: 25%;
+  background-color: wheat;
+  border-radius: 5px;
 }
 .service button:hover {
   color: black;
   background-color: aliceblue;
+}
+
+.btn {
+  text-decoration: none;
+  color: white;
+}
+.btn:hover {
   font-weight: 500;
 }
