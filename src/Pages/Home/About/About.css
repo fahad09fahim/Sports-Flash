@@ -1,0 +1,11 @@
+.about {
+  margin: 15px;
+  padding: 20px;
+  border-radius: 26px;
+  background: #b5aeaea0;
+  box-shadow: 5px 5px 7px #aeabab, -5px -5px 7px #767676;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}

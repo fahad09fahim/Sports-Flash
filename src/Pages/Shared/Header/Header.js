@@ -28,13 +28,12 @@ const Header = () => {
               <Nav.Link as={Link} to="/blogs">
                 Blogs
               </Nav.Link>
-              <Nav.Link href="#pricing">About</Nav.Link>
+              <Nav.Link as={Link} to="/about">
+                About Me
+              </Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link href="#deets">Log in</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
-                Dank memes
-              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
