@@ -1,38 +1,56 @@
 import React, { useRef } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
 import "./Login.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import SocialLogin from "../SocialLogin/SocialLogin";
+
 const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const navigate = useNavigate();
   const location = useLocation();
+
   let from = location.state?.from?.pathname || "/";
   let errorElement;
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, user, loading, hookError] =
     useSignInWithEmailAndPassword(auth);
-  if (loading) {
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  if (loading || sending) {
     return <Loading></Loading>;
   }
-
   if (user) {
     navigate(from, { replace: true });
   }
-
-  if (error) {
-    errorElement = <p className="text-danger">Error: {error?.message}</p>;
+  if (hookError) {
+    errorElement = <p className="text-warning">{hookError?.message}</p>;
   }
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
   };
+
   const navigateSignup = () => {
     navigate("/signup");
+  };
+  // handle reset password
+  const resetPassword = async () => {
+    const email = emailRef.current.value;
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast.success("✉ Send Reset Email");
+    } else {
+      toast.warn("please Enter your email address!");
+    }
   };
 
   return (
@@ -57,16 +75,19 @@ const Login = () => {
             required="required"
           />
         </div>
-        <label className="mb-2">
-          <input type="checkbox" /> I accept terms and condition
-        </label>
+
         <div className="form-group mb-2 text-center ">
           <button type="submit" className="btn btn-dark btn-block w-75">
             Log in
           </button>
         </div>
         <div>
-          <a href="#">Forgot Password?</a>
+          <button
+            className="btn btn-link text-info text-decoration-none"
+            onClick={resetPassword}
+          >
+            Forgot Password?
+          </button>
         </div>
       </form>
       <p className="text-center">
@@ -80,7 +101,19 @@ const Login = () => {
           Create an Account
         </Link>
       </p>
+      <SocialLogin></SocialLogin>
       {errorElement}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

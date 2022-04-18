@@ -1,27 +1,37 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import Loading from "../../Shared/Loading/Loading";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Signup = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const navigate = useNavigate();
+  const [agree, setAgree] = useState(false);
+  let errorElement;
 
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     await createUserWithEmailAndPassword(email, password);
-    navigate("/home");
-    console.log(user);
   };
   const navigateLogin = () => {
     navigate("/login");
   };
-
+  if (loading) {
+    return <Loading />;
+  }
+  if (user) {
+    navigate("/home");
+  }
+  if (error) {
+    errorElement = <p className="text-warning"> {error?.message}</p>;
+  }
   return (
     <div className="login-form">
       <form onSubmit={handleSubmit}>
@@ -53,11 +63,24 @@ const Signup = () => {
             required="required"
           />
         </div>
-        <label className="mb-2">
-          <input type="checkbox" /> I accept terms and condition
+        <input
+          onClick={() => setAgree(!agree)}
+          type="checkbox"
+          name="terms"
+          id="terms"
+        />
+        <label
+          className={`mb-2 ps-3 ${agree ? "" : "text-danger"} `}
+          htmlFor="terms"
+        >
+          I accept terms and condition
         </label>
         <div className="form-group mb-2 text-center ">
-          <button type="submit" className="btn btn-dark btn-block w-75">
+          <button
+            disabled={!agree}
+            type="submit"
+            className="btn btn-dark btn-block w-75"
+          >
             Sign UP
           </button>
         </div>
@@ -68,6 +91,8 @@ const Signup = () => {
           Log in
         </Link>
       </p>
+      <SocialLogin></SocialLogin>
+      {errorElement}
     </div>
   );
 };

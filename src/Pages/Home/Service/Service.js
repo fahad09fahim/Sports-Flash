@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Service.css";
 const Service = ({ service }) => {
   const { name, price, image, details } = service;
@@ -12,7 +12,7 @@ const Service = ({ service }) => {
       <p className="details">
         <small>{details}</small>
       </p>
-      <Link to="checkout">
+      <Link to="/checkout">
         <button>Book</button>
       </Link>
     </div>
