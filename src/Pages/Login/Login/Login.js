@@ -19,9 +19,12 @@ const Login = () => {
 
   let from = location.state?.from?.pathname || "/";
   let errorElement;
+
   const [signInWithEmailAndPassword, user, loading, hookError] =
     useSignInWithEmailAndPassword(auth);
+
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
   if (loading || sending) {
     return <Loading></Loading>;
   }
@@ -31,6 +34,7 @@ const Login = () => {
   if (hookError) {
     errorElement = <p className="text-warning">{hookError?.message}</p>;
   }
+  // handle submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
