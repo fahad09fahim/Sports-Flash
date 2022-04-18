@@ -4,10 +4,6 @@ const CheckOut = () => {
   return (
     <div>
       <section className="component">
-        <div className="total">
-          <h3>TOTAL</h3>
-          <p>187,00 €</p>
-        </div>
         <div className="credit-card">
           <h2>Credit card</h2>
           <form>
